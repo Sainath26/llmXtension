@@ -6,14 +6,10 @@ chrome.contextMenus.create({
 
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
   if (info.menuItemId === "llmXP") {
-    chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      function: () => {
-        navigator.clipboard.writeText(window.getSelection().toString());
-      },
-    });
+    const Text = info.selectionText;
+    console.log(typeof Text);
+    sendMessageToServer(Text);
     const popupUrl = chrome.runtime.getURL("popup/popup.html");
-    const tabId = tab.id;
     const windowInfo = {
       url: popupUrl,
       type: "popup",
@@ -23,3 +19,33 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
     chrome.windows.create(windowInfo);
   }
 });
+
+async function sendMessageToServer(Text) {
+  const url = `http://localhost:3000/llmx`;
+  const Data = {
+    key: Text,
+  };
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(Data),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const responseData = await response.json();
+    console.log(responseData.message);
+    chrome.runtime.sendMessage({
+      action: "displayResponse",
+      data: responseData.message,
+    });
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
