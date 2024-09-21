@@ -26,6 +26,3 @@ This project is actively being developed. Contributions and feature requests are
 
 3. Commit changes.
 4. Open a pull request.
-
-
-Roadmap
