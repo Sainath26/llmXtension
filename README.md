@@ -18,11 +18,5 @@ Usage
 2. Select "Get it explained by LLM" from the context menu.
 3. View explanations and answers in the popup window.
 
-**Development**
+
 This project is actively being developed. Contributions and feature requests are welcome.
-
-
-
-
-3. Commit changes.
-4. Open a pull request.
