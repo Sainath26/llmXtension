@@ -7,12 +7,13 @@ LLMXtension is a browser extension that enables users to right-click on any text
 - Localhost server for development and testing
 
 **Installation**
-1. Clone the repository: `git clone (link unavailable)
+1. Clone the repository: `git clone https://github.com/Sainath26/llmXtension`
 2. Install dependencies: npm install (or yarn install)
 3. Load the extension in your browser:
     - Google Chrome: chrome://extensions/, enable Developer mode, and load unpacked extension from the repository folder.
     - Mozilla Firefox: about:debugging, load temporary extension from the repository folder.
-
+4. Navigate to the server folder and run `node server.js`. This will run the local server.
+ 
 Usage
 1. Right-click on any text on a website.
 2. Select "Get it explained by LLM" from the context menu.
